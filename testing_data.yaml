@@ -1,13 +1,5 @@
-# datafile for testing
-# see https://pubhub.devnetcloud.com/media/pyats/docs/aetest/datafile.html#
-# for how to use datafiles
-
-testcases: 
-
-    testcase1:     
-        uid: testcase1
-        
-
-    testcase2:     
-        uid: testcase2
-        
+extends: '%CALLABLE{genie.libs.sdk.genie_yamls.datafile(trigger,nxos)}'
+InitializeTestbed:
+    source:
+        pkg: ~.pyats.project.testing.testing
+        class: InitializeTestbed
