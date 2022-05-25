@@ -1,5 +1,7 @@
 extends: '%CALLABLE{genie.libs.sdk.genie_yamls.datafile(trigger,nxos)}'
-InitializeTestbed:
+TriggerGetConfig:
     source:
-        pkg: ~.pyats.project.testing.testing
-        class: InitializeTestbed
+        pkg: testing
+        class: GetConfig
+    devices:
+        - sbx-ao
