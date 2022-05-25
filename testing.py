@@ -34,7 +34,7 @@ class CommonSetup(aetest.CommonSetup):
         testbed.connect()
 
 
-class testcase1(aetest.Testcase):
+class GetConfig(aetest.Testcase):
     '''testcase1
 
     < docstring description of this testcase >
@@ -48,42 +48,20 @@ class testcase1(aetest.Testcase):
     def setup(self):
         pass
 
-    # you may have N tests within each testcase
-    # as long as each bears a unique method name
-    # this is just an example
     @aetest.test
-    def test(self):
-        pass
+    def test(self, testbed, devices=["sbx-ao"]):
+        print(devices)
+        for node in devices:
+            result = {}
+            device = testbed.devices[node]
+            get_result = device.execute("show running-config")
+            result[node] = get_result
+        print(result)
 
     @aetest.cleanup
     def cleanup(self):
         pass
     
-
-class testcase2(aetest.Testcase):
-    '''testcase2
-
-    < docstring description of this testcase >
-
-    '''
-
-    # testcase groups (uncomment to use)
-    # groups = []
-
-    @aetest.setup
-    def setup(self):
-        pass
-
-    # you may have N tests within each testcase
-    # as long as each bears a unique method name
-    # this is just an example
-    @aetest.test
-    def test(self):
-        pass
-
-    @aetest.cleanup
-    def cleanup(self):
-        pass
     
 
 
@@ -93,24 +71,18 @@ class CommonCleanup(aetest.CommonCleanup):
     < common cleanup docstring >
 
     '''
+    @aetest.subsection
+    def disconnect(self, testbed):
+        '''
+        establishes connection to all your testbed devices.
+        '''
+        # make sure testbed is provided
+        assert testbed, 'Testbed is not provided!'
 
+        # connect to all testbed devices
+        testbed.disconnect()
     # uncomment to add new subsections
     # @aetest.subsection
     # def subsection_cleanup_one(self):
     #     pass
 
-if __name__ == '__main__':
-    # for stand-alone execution
-    import argparse
-    from pyats import topology
-
-    parser = argparse.ArgumentParser(description = "standalone parser")
-    parser.add_argument('--testbed', dest = 'testbed',
-                        help = 'testbed YAML file',
-                        type = topology.loader.load,
-                        default = None)
-
-    # do the parsing
-    args = parser.parse_known_args()[0]
-
-    aetest.main(testbed = args.testbed)
