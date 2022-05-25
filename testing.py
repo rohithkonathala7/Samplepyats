@@ -50,7 +50,6 @@ class GetConfig(aetest.Testcase):
 
     @aetest.test
     def test(self, testbed, devices=["sbx-ao"]):
-        print(devices)
         for node in devices:
             result = {}
             device = testbed.devices[node]
