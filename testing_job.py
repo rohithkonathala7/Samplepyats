@@ -9,20 +9,14 @@ __credits__ = ['list', 'of', 'credit']
 __version__ = 1.0
 
 import os
-from genie.harness.main import grun
+from genie.harness.main import gRun
 
-SCRIPT_PATH = os.path.dirname(__file__)
 
-def main(runtime):
+def main():
     '''job file entrypoint'''
     
-    grun(
+    gRun(
     	pdb = False,
-    	trigger_datafile = "~/pyats/project/testing/testing_data.yaml",
-    	trigger_uids = ["InitializeTestbed"]
+    	trigger_datafile = "testing_data.yaml",
+    	trigger_uids = ["TriggerGetConfig"]
     )
-    
-    # run script
-    run(testscript= os.path.join(SCRIPT_PATH, 
-                                 'testing.py'),
-        runtime = runtime)
