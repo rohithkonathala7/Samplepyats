@@ -4,4 +4,4 @@ TriggerGetConfig:
         pkg: testing
         class: GetConfig
     devices:
-        - sbx-ao
+        - sandbox-nxos-1.cisco.com
