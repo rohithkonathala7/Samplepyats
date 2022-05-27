@@ -1,7 +1,7 @@
 testbed:
     name: IOS_Testbed
 devices:
-    LEAF1: # <----- must match to your device hostname in the prompt
+    sandbox-nxos-1.cisco.com: # <----- must match to your device hostname in the prompt
         os: nxos
         type: nxos
         connections:
