@@ -49,7 +49,7 @@ class GetConfig(aetest.Testcase):
         pass
 
     @aetest.test
-    def test(self, testbed, devices=["sbx-ao"]):
+    def test(self, testbed, devices=["sandbox-nxos-1.cisco.com"]):
         for node in devices:
             result = {}
             device = testbed.devices[node]
