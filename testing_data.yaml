@@ -1,7 +1,0 @@
-extends: '%CALLABLE{genie.libs.sdk.genie_yamls.datafile(trigger,nxos)}'
-TriggerGetConfig:
-    source:
-        pkg: testing
-        class: GetConfig
-    devices:
-        - sandbox-nxos-1.cisco.com
